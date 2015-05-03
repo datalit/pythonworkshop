@@ -253,8 +253,8 @@ age above 75 or below 2
 
 ### Challenge: select all the people that are:
 - in the 3rd class
-- under age 10
 - female
+- under age 10
 
 	train[(train['Age'] < 10) & (train['pclass'] == 3) & (train['sex'] == "female")]
 
