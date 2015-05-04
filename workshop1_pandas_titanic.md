@@ -224,7 +224,7 @@ Applying the series the same way you select a column to select all the records i
 
 we can also only select all the 60 yrs olds in the age column
 	
-	train_age[train.age == 60]
+	train_age[train.Age == 60]
 
 it's boring to look at only ages, so let's select the whole dataframe using the same criteria, again the first 5 rows
 	
