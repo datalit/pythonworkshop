@@ -159,11 +159,15 @@ or use index locations
 ## Descriptive statistics
 
 ### counting and summarizing a data series
-counting the frequencies of each element in the data series
+counting the frequencies of each unique element in the data series
 	
 	age_counts = train_age.value_counts()
 look at the first 10 records of the count results
 	
+	age_counts.head(10)
+
+The results are in descending order by default. In this special case, the age_counts data series has integer values. We can  show all the records all the way to a specific value (say age 10 in this case) using
+
 	age_counts[:10]
 
 count the total and skip all the missing values:
