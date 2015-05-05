@@ -314,15 +314,19 @@ the first 3 largest numbers in the age data series
 ### sort by multi-indexing
 sort the dataframe by age
 	
-	train.sort_index(by = ('Age'))
+	train.sort_index(by = 'Age')
 
 sort the dataframe first by age, then pclass
 	
-	train.sort_index(by = (['Age','Pclass']))[:10]
+	train.sort_index(by = ['Age','Pclass'])[:10]
 
 sort the dataframe first by class, then age
 	
-	train.sort_index(by = (['Pclass','Age']))[:10]
+	train.sort_index(by = ['Pclass','Age'])[:10]
+
+sort the dataframe first by class in descending order, then age in ascending order
+
+	train.sort_index(by = ['Pclass','Age'], ascending = [False,True])[:10]
 
 ## missing values
 we can check missing values using the following methods
