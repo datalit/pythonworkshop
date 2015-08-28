@@ -376,6 +376,7 @@ first we make a copy of the train dataframe:
 
 	See the the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
 	  #!/bin/bash /Users/xufei/anaconda/bin/python.app
+
 Notice the warning message. It was not an error, but it's suggesting that our slicing method is not the best. For detailed explanations please refer to the url above. We will show you different ways of slicing below.
 
 now we can check and compare:
@@ -388,7 +389,6 @@ now we can check and compare:
 	3    35
 	4    35
 	Name: Age, dtype: float64
-	train['Age'].head()
 
 ### slicing subsets of rows and columns
 	
@@ -483,7 +483,6 @@ The results are in descending order by default. In this special case, the age_co
 	10.0     2
 	dtype: int64
 
-
 count the total and skip all the missing values:
 	
 	In [34]: train_age.sum(skipna = True)
@@ -492,6 +491,7 @@ wondering what happens if you don't skip missing values?
 	
 	In [35]: train_age.sum(skipna = False)
 	Out[35]: nan
+
 it won't calculate the sum because it can't do sum with unknown values! it's a safe way to take the sum and make sure that you are not missing anything.
 
 we can also look at the oldest
@@ -943,6 +943,13 @@ age above 75 or below 2
 	803    male   0.42      0      1             2625    8.5167      NaN        C  
 	827    male   1.00      0      2  S.C./PARIS 2079   37.0042      NaN        C  
 	831    male   0.83      1      1            29106   18.7500      NaN        S 
+=======
+	train[(train_age > 60) & (train_age < 75)]
+
+age above 75 or below 2
+	
+	train[(train_age > 75) | (train_age < 2)]
+>>>>>>> 81c8f1130c206a79f5baa085be7d82d3e0f4113d
 
 ### Selecting Challenge: 
 
@@ -954,6 +961,7 @@ Select all the people that are:
 
 Anwser: 
 
+<<<<<<< HEAD
 	train[(train['Age'] < 10) & (train['Pclass'] == 3) & (train['Sex'] == "female")]
 
 A different way to match multiple criteria using 'in'
@@ -1086,6 +1094,13 @@ A different way to match multiple criteria using 'in'
 	842      0              113798   31.0000   NaN        C  
 	876      0                7534    9.8458   NaN        S  
 
+
+	train[(train['Age'] < 10) & (train['pclass'] == 3) & (train['sex'] == "female")]
+
+A different way to match multiple criteria using 'in'
+	
+	train[train_age.isin([20,30])]
+
 and 'not in' using the '~' in from of the criteria
 	
 	train[~train_age.isin([20,30])]
@@ -1151,9 +1166,28 @@ We can use 'contains' to find names that has 'Lily' in them
 	137                     Futrelle, Mr. Jacques Heath
 	Name: Name, dtype: object
 
+	train[train['Ticket'].isin(['113803'])]
+
+To select all tickets that match 'PC 17599':
+	
+	train['Ticket'][train['Ticket'].str.match('PC 17599', as_indexer=True)]
+or to get all the records with the same criteria:
+	
+	train[train['Ticket'].str.match('PC 17599', as_indexer=True)]
+
+We can use 'contains' to find names that has 'Lily' in them
+	
+	train['Name'][train['Name'].str.contains('Lily')]
+	
+'startswith' and 'endswith'
+	
+	train['Name'][train['Name'].str.endswith('Peel)')]
+	train['Name'][train['Name'].str.startswith('Futrelle')]
+
 ## sorting
 sort the age data series in ascending order
 	
+
 	In [65]: train_age.order()
 	Out[65]: 
 	803    0.42
@@ -1330,7 +1364,7 @@ we can check missing values using the following methods
 	notnull()
 
 The first 5 missing values in the age dataseries
-	
+
 	In [75]: train_age[train_age.isnull()].head()
 	Out[75]: 
 	5    NaN
@@ -1359,10 +1393,10 @@ The first 5 records that have missing age values
 	28      0      0  330959   7.8792   NaN        Q  
 
 
-
 You can replace missing values with anything using '.fillna()', but we don't recommend it! Missing values are better left as is, because programming languages usually treat them differently from everything else. If you replace them with any value, they may affect your calculations later on.
 If you really have to do it, at least make a copy of the dataframe first:
 	
+
 	In [77]: train2 = train.copy()
 then replace all missing age values with 0
 	
@@ -1395,13 +1429,16 @@ We can also replace missing age values with strings
 Sometimes we may want to remove records that have missing values.We can use '.dropna()' to do that. 
 Caution! Removing records with missing values will have serious consequences, so think about it twice before doing it!
 	
+
 	In [85]: train4 = train.copy()
 
 	In [86]: train4 = train4.dropna()
 
+
 ## adding columns
 We can add new columns to the dataframe by directly assigning values to the new column:
 	
+
 	In [87]: train['Gender'] = 4
 	In [88]: train.dtypes
 	Out[88]: 
@@ -1450,9 +1487,11 @@ replace 0 with missing values back too:
 	28   NaN
 	Name: Age, dtype: float64
 
+
 ## Applying elementwise Python functions in a data series
 Adding a column called 'Gender' that is filled by the first letter from the values in 'Sex' column
 	
+
 	In [95]: train['Gender'] = train['Sex'].map(lambda x: x[0].upper())
 
 	In [96]: train['Gender'].head()
@@ -1533,3 +1572,4 @@ We can write the new dataframe out to a csv file
 
 	In [102]: ls data/
 	train.csv        train_crazy.csv
+
