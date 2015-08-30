@@ -943,13 +943,6 @@ age above 75 or below 2
 	803    male   0.42      0      1             2625    8.5167      NaN        C  
 	827    male   1.00      0      2  S.C./PARIS 2079   37.0042      NaN        C  
 	831    male   0.83      1      1            29106   18.7500      NaN        S 
-=======
-	train[(train_age > 60) & (train_age < 75)]
-
-age above 75 or below 2
-	
-	train[(train_age > 75) | (train_age < 2)]
->>>>>>> 81c8f1130c206a79f5baa085be7d82d3e0f4113d
 
 ### Selecting Challenge: 
 
@@ -961,7 +954,6 @@ Select all the people that are:
 
 Anwser: 
 
-<<<<<<< HEAD
 	train[(train['Age'] < 10) & (train['Pclass'] == 3) & (train['Sex'] == "female")]
 
 A different way to match multiple criteria using 'in'
