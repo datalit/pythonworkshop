@@ -421,8 +421,6 @@ or we can use location-based indexer .iloc
 	1         1  female
 	5         0    male 
 
-
-
 ## Challenge: what does this one show?
 	
 	In [30]: train.iloc[[0,4,10],:]
@@ -436,6 +434,43 @@ or we can use location-based indexer .iloc
 	0    22      1      0  A/5 21171   7.25   NaN        S  
 	4    35      0      0     373450   8.05   NaN        S  
 	10    4      1      1    PP 9549  16.70    G6        S  
+
+if you want to jump select non-consecutive and consecutive rows or columns, you can use iloc combined with the RClass from the numpy module. first we need to import numpy:
+	import numpy as np
+
+then if we want to take the 1st, 3rd, and 5-10th rows from dataframe train, we can use np.r_[0,2,4:10] to concatnate the desired row indices:
+	In [30]: train.iloc[np.r_[0,2,4:10], :]
+	Out[30]: 
+	   PassengerId  Survived  Pclass  \
+	0            1         0       3   
+	2            3         1       3   
+	4            5         0       3   
+	5            6         0       3   
+	6            7         0       1   
+	7            8         0       3   
+	8            9         1       3   
+	9           10         1       2   
+	
+	                                                Name     Sex  Age  SibSp  \
+	0                            Braund, Mr. Owen Harris    male   22      1   
+	2                             Heikkinen, Miss. Laina  female   26      0   
+	4                           Allen, Mr. William Henry    male   35      0   
+	5                                   Moran, Mr. James    male  NaN      0   
+	6                            McCarthy, Mr. Timothy J    male   54      0   
+	7                     Palsson, Master. Gosta Leonard    male    2      3   
+	8  Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)  female   27      0   
+	9                Nasser, Mrs. Nicholas (Adele Achem)  female   14      1   
+	
+	   Parch            Ticket     Fare Cabin Embarked  
+	0      0         A/5 21171   7.2500   NaN        S  
+	2      0  STON/O2. 3101282   7.9250   NaN        S  
+	4      0            373450   8.0500   NaN        S  
+	5      0            330877   8.4583   NaN        Q  
+	6      0             17463  51.8625   E46        S  
+	7      1            349909  21.0750   NaN        S  
+	8      2            347742  11.1333   NaN        S  
+	9      0            237736  30.0708   NaN        C  
+
 
 ## Descriptive statistics
 
