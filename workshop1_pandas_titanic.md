@@ -439,6 +439,7 @@ if you want to jump select non-consecutive and consecutive rows or columns, you 
 	import numpy as np
 
 then if we want to take the 1st, 3rd, and 5-10th rows from dataframe train, we can use np.r_[0,2,4:10] to concatnate the desired row indices:
+
 	In [30]: train.iloc[np.r_[0,2,4:10], :]
 	Out[30]: 
 	    PassengerId  Survived  Pclass  \
