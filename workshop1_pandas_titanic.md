@@ -436,6 +436,7 @@ or we can use location-based indexer .iloc
 	10    4      1      1    PP 9549  16.70    G6        S  
 
 if you want to jump select non-consecutive and consecutive rows or columns, you can use iloc combined with the RClass from the numpy module. first we need to import numpy:
+
 	import numpy as np
 
 then if we want to take the 1st, 3rd, and 5-10th rows from dataframe train, we can use np.r_[0,2,4:10] to concatnate the desired row indices:
