@@ -400,7 +400,7 @@ now we can check and compare:
 
 We can use .loc which is a better and more efficient method than chaining labels.
 
-	In [27]: train.loc[:,('Age','Pclass')][3:5]
+	In [27]: train.loc[:,['Age','Pclass']][3:5]
 	Out[27]: 
 	   Age  Pclass
 	3   35       1
@@ -436,12 +436,14 @@ or we can use location-based indexer .iloc
 	10    4      1      1    PP 9549  16.70    G6        S  
 
 if you want to jump select non-consecutive and consecutive rows or columns, you can use iloc combined with the RClass from the numpy module. first we need to import numpy:
+
 	import numpy as np
 
 then if we want to take the 1st, 3rd, and 5-10th rows from dataframe train, we can use np.r_[0,2,4:10] to concatnate the desired row indices:
+
 	In [30]: train.iloc[np.r_[0,2,4:10], :]
 	Out[30]: 
-	   PassengerId  Survived  Pclass  \
+	    PassengerId  Survived  Pclass  \
 	0            1         0       3   
 	2            3         1       3   
 	4            5         0       3   
