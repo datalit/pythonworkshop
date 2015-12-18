@@ -400,7 +400,7 @@ now we can check and compare:
 
 We can use .loc which is a better and more efficient method than chaining labels.
 
-	In [27]: train.loc[:,['Age','Pclass']][3:5]
+	In [27]: train.loc[3:5,['Age','Pclass']]
 	Out[27]: 
 	   Age  Pclass
 	3   35       1
